@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class WordHoarder {
     public String printAllWordsWhichRepeatMoreThan(String text, int index) {
         StringBuilder modifierText = new StringBuilder();
-        Pattern pattern = Pattern.compile("\\b(\\w+)\\b(?=.*\\b\\1\\b{" + index + "})");
+        Pattern pattern = Pattern.compile("\\b(\\w+)\\b(?=.*\\b\\1\\b)");
         Matcher matcher = pattern.matcher(text.toLowerCase());
         Map<String, Integer> wordCountMap = new HashMap<>();
         while (matcher.find()) {
@@ -28,7 +28,7 @@ public class WordHoarder {
     public static void main(String[] args) {
         System.out.println("Enter how many times(or more) the word should be repeated : ");
         Scanner indexScanner = new Scanner(System.in, StandardCharsets.UTF_8);
-        int index = indexScanner.nextInt();
+        final int index = indexScanner.nextInt();
         indexScanner.nextLine();
         System.out.println("Enter a sentence: ");
         Scanner sentanceScanner = new Scanner(System.in, StandardCharsets.UTF_8);
@@ -37,8 +37,9 @@ public class WordHoarder {
         System.out.println("Words what repeat: ");
         if (!remover.printAllWordsWhichRepeatMoreThan(sentence, index).isEmpty()) {
             System.out.println(remover.printAllWordsWhichRepeatMoreThan(sentence, index));
+        } else {
+            System.out.println("No word in the text is repeated a given number of times");
         }
-        else System.out.println("No word in the text is repeated a given number of times");
         indexScanner.close();
         sentanceScanner.close();
     }
