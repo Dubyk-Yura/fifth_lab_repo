@@ -8,11 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordHoarder {
+    private static Pattern REPEAT_COUNT_PATTERN = Pattern.compile("\\b(\\w+)\\b(?=.*\\b\\1\\b)");
+    private StringBuilder modifierText;
+
     public String printAllWordsWhichRepeatMoreThan(String text, int index) {
-        StringBuilder modifierText = new StringBuilder();
-        Pattern pattern = Pattern.compile("\\b(\\w+)\\b(?=.*\\b\\1\\b)");
-        Matcher matcher = pattern.matcher(text.toLowerCase());
+        modifierText = new StringBuilder();
+        Matcher matcher = REPEAT_COUNT_PATTERN.matcher(text.toLowerCase());
         Map<String, Integer> wordCountMap = new HashMap<>();
+
         while (matcher.find()) {
             String word = matcher.group(1);
             wordCountMap.put(word, wordCountMap.getOrDefault(word, 1) + 1);
@@ -24,6 +27,7 @@ public class WordHoarder {
         }
         return modifierText.toString();
     }
+
 
     public static void main(String[] args) {
         System.out.println("Enter how many times(or more) the word should be repeated : ");

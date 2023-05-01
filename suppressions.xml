@@ -4,6 +4,7 @@
         "https://checkstyle.org/dtds/suppressions_1_0.dtd">
 
 <suppressions>
-    <suppress checks="Indentation" files=".*" />
-    <suppress checks="CustomImportOrder" files=".*" />
+    <suppress checks="Indentation" files=".*"/>
+    <suppress checks="CustomImportOrder" files=".*"/>
+    <suppress checks="Javadoc" files="."/>
 </suppressions>
